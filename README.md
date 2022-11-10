@@ -15,4 +15,4 @@ It is temporarily not available on iphone mobile devices due to the projects' ta
 - 🚩Use Sanity.io and its incredible CMS capabilities to power the backend, enabling to update the contents of the portfolio from anywhere in the world
 - 🚩Deploy the portfolio to Vercel for the first time. 
 
-You can check out [the portfolio website](https://portfolio-2-0-doro715.vercel.app/) - your feedback and contributions are welcome!
+You can check out [the portfolio website](https://portfolio-2-0-3tkcaw0a5-doro715.vercel.app/) - your feedback and contributions are welcome!
