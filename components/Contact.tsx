@@ -22,13 +22,7 @@ export default function Contact({}: Props) {
       <h3 className="absolute uppercase top-24 tracking-[20px] text-gray-500 text-2xl">
         Contact Me
       </h3>
-      <div className="flex flex-col space-y-10">
-        <h4 className="text-4xl font-semibold text-center">
-          I have got just what you want.{" "}
-          <span className="decoration-[#F7AB0A]/50 underline">
-            Let&apos;s Talk.
-          </span>
-        </h4>
+      <div className="mt-20 flex flex-col space-y-10">
         <div className="space-y-5">
           <div className="flex items-center space-x-5 justify-center">
             <PhoneIcon className="text-[#F7AB0A] h-7 w-7 animate-pulse" />

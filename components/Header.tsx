@@ -1,14 +1,18 @@
 import React from "react";
 import { SocialIcon } from "react-social-icons";
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { Social } from "../typing";
+import { execArgv } from "process";
 
-type Props = {};
 
-function Header({}: Props) {
+type Props = {
+  socials: Social[];
+};
+
+function Header({ socials }: Props) {
   return (
     <header
-      className="sticky p-5 top-0 flex items-start justify-between max-w-7xl mx-auto z-100
+      className="sticky p-5 top-0 flex items-start justify-between max-w-7xl mx-auto z-20
     xl:items-center"
     >
       <motion.div
@@ -28,24 +32,16 @@ function Header({}: Props) {
         className="flex flex-row items-center"
       >
         {/* Social icons */}
-        <SocialIcon
-          url="https://www.youtube.com/sonnysangha"
-          fgColor="gray"
-          bgColor="transparent"
-        />
-        <SocialIcon
-          url="https://www.youtube.com/sonnysangha"
-          fgColor="gray"
-          bgColor="transparent"
-        />
-        <SocialIcon
-          url="https://www.youtube.com/sonnysangha"
-          fgColor="gray"
-          bgColor="transparent"
-        />
+        {socials.map((social) => (
+          <SocialIcon
+            key={social._id}
+            url={social.url}
+            fgColor="gray"
+            bgColor="transparent"
+          />
+        ))}
       </motion.div>
 
-      <Link href="#contact" >
       <motion.div
         initial={{
           x: 500,
@@ -62,18 +58,17 @@ function Header({}: Props) {
         }}
         className="flex flex-row items-center cursor-pointer text-gray-400"
       >
-        <SocialIcon
-          className="cursor-pointer"
-          network="email"
-          fgColor="gray"
-          bgColor="transparent"
-        />
-        
+          <SocialIcon
+            className="cursor-pointer"
+            network="email"
+            fgColor="gray"
+            bgColor="transparent"
+          />
+
         <p className="upperclass hidden md:inline-flex text-sm text-gray-400">
           Get In Touch
         </p>
       </motion.div>
-      </Link>
     </header>
   );
 }

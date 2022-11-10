@@ -1,14 +1,18 @@
 import Link from "next/link";
 import React from "react";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
+import { urlFor } from "../sanity";
+import { PageInfo } from "../typing";
 import BackgroundCircles from "./BackgroundCircles";
 
-type Props = {};
+type Props = {
+  pageInfo: PageInfo
+};
 
-export default function Hero({}: Props) {
+export default function Hero({pageInfo}: Props) {
   const [text, button] = useTypewriter({
     words: [
-      "Hi, The name is Dorothy",
+      `Hi, The is ${pageInfo?.name}`,
       "Developer who loves food and adventure.tsx",
       "<ButLovesToCodeMore />",
     ],
@@ -22,12 +26,12 @@ export default function Hero({}: Props) {
       {/* eslint-disable */}
       <img
         className="relative rounded-full h-32 w-32 object-cover mx-auto"
-        src="https://pbs.twimg.com/profile_images/1529288783077822465/f0dVpcDQ_400x400.jpg"
+        src={urlFor(pageInfo?.heroImage).url()}
         alt=""
       />
       <div className="z-20">
         <h2 className="text-sm uppercase text-gray-500 pb-2 tracking-[15px]">
-          Front-end Engineer
+          {pageInfo?.role}
         </h2>
         <h1 className="text-5xl lg:text-6xl font-semibold px-10">
           <span className="mr-3">{text}</span>

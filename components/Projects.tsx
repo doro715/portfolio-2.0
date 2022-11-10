@@ -1,10 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { motion } from "framer-motion";
-type Props = {};
+import { Project } from "../typing";
+import { urlFor } from "../sanity";
+import Link from "next/link";
+type Props = {
+  projects: Project[];
+};
 
-export default function Projects({}: Props) {
-  const projects = [1, 2, 3, 4, 5];
-
+export default function Projects({ projects }: Props) {
   return (
     <motion.div
       initial={{
@@ -22,9 +26,10 @@ export default function Projects({}: Props) {
         Projects
       </h3>
       <div className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory z-20 scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80">
-        {projects.map((project, i) => (
+        {projects?.map((project, i) => (
           // eslint-disable-next-line react/jsx-key
-          <div className="w-screen flex-shrink-0 snap-center flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen">
+          <div className="w-screen flex-shrink-0 snap-center flex-row space-y-5 items-center justify-evenly p-20 md:p-44 h-screen">
+            <div className="flex-row w-full h-1/2 mb-0">
             <motion.img
               initial={{
                 y: -300,
@@ -34,30 +39,42 @@ export default function Projects({}: Props) {
                 duration: 1.2,
               }}
               whileInView={{
-                opacity: 1,
+                opacity: 0.05,
                 y: 0,
               }}
               viewport={{
                 once: true,
               }}
-              src="https://cdn.sanity.io/images/ltuexkre/production/af7ca99b5a796d0698cf9121a4a0795b5022b6be-666x375.png"
+              src={urlFor(project?.image).url()}
               alt=""
             />
-            <div className="space-y-10 px-0 md:px-10 max-w-6xl">
-              <h4 className="text-4xl font-semibold text-center">
-                <span className="underline decoration-[#F7AB0A]/50">
-                  Case Study {i + 1} of {projects.length}
+            </div>
+            <div className="space-y-10 px-0 md:px-10 max-w-6xl font-bold">
+              <h4 className="text-2xl font-semibold text-center">
+                <span>
+                  Case Study {i + 1} of {projects.length}:&ensp;
                 </span>
+                <Link href={project?.linkToBuild} className="underline decoration-[#F7AB0A]/50 cursor-pointer">{project?.title}</Link>
               </h4>
+              <div className="flex items-center space-x-2 justify-center">
+                {project?.technologies.map((technology) => (
+                  <img
+                    className="h-10 w-10"
+                    key={technology._id}
+                    src={urlFor(technology.image).url()}
+                    alt=""
+                  />
+                ))}
+              </div>
+
               <p className="text-lg text-center md:text-left">
-                Netflix that has a authentication with google, it ahs a beautifu
-                lhome whe walso use stripe fdsfsdor sfka
+                {project?.summary}
               </p>
             </div>
           </div>
         ))}
       </div>
-      <div className="w-full absolute top-[30%] bg-[#F7AB0A]/25 left-0 h-[500px] -skew-y-12"></div>
+      <div className="w-full absolute top-[30%] bg-[#F7AB0A]/20 left-0 h-[500px] -skew-y-12" />
     </motion.div>
   );
 }
